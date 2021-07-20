@@ -1,0 +1,3 @@
+C:\Users\Yogesh\Desktop\Codes\1\Filters\obj\Debug\netcoreapp2.0\Filters.csprojAssemblyReference.cache
+C:\Users\Yogesh\Desktop\Codes\1\Filters\obj\Debug\netcoreapp2.0\Filters.AssemblyInfoInputs.cache
+C:\Users\Yogesh\Desktop\Codes\1\Filters\obj\Debug\netcoreapp2.0\Filters.AssemblyInfo.cs
