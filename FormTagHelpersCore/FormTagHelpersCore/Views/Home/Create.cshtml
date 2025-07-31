@@ -1,0 +1,66 @@
+﻿@model Employee
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}@ViewBag.idnm-create
+<div asp-validation-summary="All"></div>
+<form method="post">
+    <div>
+     
+        <label asp-for="Name"></label>
+        <input asp-for="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" />
+    </div>
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div>
+
+        <input type="radio" asp-for="Gender" value="Male" />Male<br />
+        <input type="radio" asp-for="Gender" value="Female" />Female<br />
+        <input type="radio" asp-for="Gender" value="Others" />Others<br />
+           <span asp-validation-for="Gender" class="text-danger"></span>
+        @foreach (var item in Model.gens)
+            {
+                <input type="radio" value="@item.Id" asp-for="selectnm" />@item.Gendnm
+            }
+    </div>
+    <div>
+        <label asp-for="Department"></label>
+        <select asp-for="Department"
+                asp-items="Html.GetEnumSelectList<Dept>()"></select>
+    </div>
+    <div>
+        <input asp-for="AcceptsTerms" />AcceptTerms
+    </div>
+    <div>
+        @*  <label asp-for="Bio"></label>
+            <textarea asp-for="Bio" />*@
+        <button type="submit">Create</button>
+    </div>
+
+    <div>
+        <a asp-controller="Home" asp-action="Index">Index Page</a>
+    </div>
+    <div>
+
+        <img src="~/Images/rose.jpeg" asp-append-version="true" alt="Rose" />
+    </div>
+
+</form>
+
+@*<div asp-validation-summary="ModelOnly"></div>
+        <div asp-validation-summary="None"></div>
+
+asp-validation-summary         Validation messages displayed
+
+ValidationSummary.All          Property and model level
+ValidationSummary.ModelOnly    Model
+ValidationSummary.None         None*@

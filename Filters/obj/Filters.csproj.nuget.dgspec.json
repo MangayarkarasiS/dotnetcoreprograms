@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mangai\\source\\repos\\NETCORE\\Filters\\Filters.csproj": {}
+    "F:\\.NET Core\\dotnetcoreprograms\\Filters\\Filters.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mangai\\source\\repos\\NETCORE\\Filters\\Filters.csproj": {
+    "F:\\.NET Core\\dotnetcoreprograms\\Filters\\Filters.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mangai\\source\\repos\\NETCORE\\Filters\\Filters.csproj",
+        "projectUniqueName": "F:\\.NET Core\\dotnetcoreprograms\\Filters\\Filters.csproj",
         "projectName": "Filters",
-        "projectPath": "C:\\Users\\Mangai\\source\\repos\\NETCORE\\Filters\\Filters.csproj",
+        "projectPath": "F:\\.NET Core\\dotnetcoreprograms\\Filters\\Filters.csproj",
         "packagesPath": "C:\\Users\\Mangai\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mangai\\source\\repos\\NETCORE\\Filters\\obj\\",
+        "outputPath": "F:\\.NET Core\\dotnetcoreprograms\\Filters\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mangai\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -51,10 +51,29 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.10, 3.1.10]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.32, 3.1.32]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.1.0, 3.1.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.1.0, 3.1.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -63,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
