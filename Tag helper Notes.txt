@@ -1,0 +1,113 @@
+Tag helper in Asp.Net Core for radiobutton & Dropdownlist:
+--------------------------------------------------------------------------------------
+
+FormTagHelpers - VS project name where these codings are implemented
+
+Ist method:
+-----------------
+Dept.cs:
+namespace FormTagHelpersCore.Models
+{
+    public enum Dept
+    {
+        None,
+        IT,
+        HR,
+        Admin
+    }
+ public class Employee
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }       
+        public string  Gender { get; set; }        
+        public Dept Department { get; set; }
+    }
+ }
+---------------------------------------------------------------------------
+Create.cshtml:
+----------------------
+@model Employee
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form asp-controller="home" asp-action="Create" method="post">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name">
+    </div>
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email">
+    </div>
+    <div>
+
+        <input type="radio" asp-for="Gender" value="Male" />Male<br />
+        <input type="radio" asp-for="Gender" value="Female" />Female<br />
+        <input type="radio" asp-for="Gender" value="Others" />Others<br />
+
+    </div>
+    <div>
+        <label asp-for="Department"></label>
+        <select asp-for="Department"
+                asp-items="Html.GetEnumSelectList<Dept>()"></select>
+    </div>
+    <button type="submit">Create</button>
+</form>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Home Controller:
+-------------------------
+ public IActionResult Create()
+        {
+            return View();
+        }
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+IInd method for Radio button:
+*********************************
+ public class Gendercls
+    {
+        public int Id { get; set; }
+        public string Gendnm { get; set; }
+    }
+   
+    public class Employee
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }       
+        public string  Gender { get; set; }        
+        public Dept Department { get; set; }
+
+        public IEnumerable<Gendercls> gens { get; set; }
+        public int selectnm { get; set; }
+    }
+}
+----------------------------------------------------------------------------------------------
+create.cshtml:
+--------------------- 
+@foreach (var item in Model.gens )
+        {
+            <input type="radio" value="@item.Id" asp-for="selectnm" />@item.Gendnm 
+        }
+
+*******************************************************
+controller:
+-------------------
+ public IActionResult Create()
+        {
+            var item = new Employee 
+            { 
+            gens=new List <Gendercls>
+            {
+                new Gendercls {Id=1,Gendnm="Male"},
+                new Gendercls {Id=2,Gendnm="Female"},
+                new Gendercls {Id=3,Gendnm="Others"}
+
+            }
+            };
+            return View(item);
+---------------------------------------------------------------------------------------

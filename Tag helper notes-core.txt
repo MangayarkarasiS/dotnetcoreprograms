@@ -1,0 +1,41 @@
+Tag helpers:
+
+Html code to create hyperlink:
+<a href="home/Details/1" >View</a>
+<a href="home/Details/@employee.Id" >View</a>
+
+Tag helper code:
+
+<a asp-controller="home" asp-action="Details" asp-route-Id>View</a>
+
+Eventhough html code seems to be easy than Tag helper the use of it is when in route .config file 
+we change the path like = "student/{controller=home}/{action=Details}/@parameter"
+
+her in html student will not get reflected and it will throw 404 error. whereas taghelper it will automatically at runtime update the link that is given in route.config file
+
+This is the advantage of Tag helper over traditional HTML
+
+Image tag helper:
+*******************
+
+When we give our HTML img element - the src attribute will serve the image from its folder
+Now if i go for changing the image inside the file, but name is same 
+
+i.e flower image is present in flower.jpeg file
+now i change the image to teddy instead of flower, without changing the name of file, 
+then what will happen is same flower image will be displayed instead of teddy, 
+this is because it is cached by browser. so we have to disable cache by clicking f12 
+and goto network option and check disable cache, so that it will get from server.
+
+But by doing this performance will be a issue since instead of taking from cache , it takes everytime from server.
+
+So to overcome this, think if we have an option like if image changes it has to go to server or otherwise take it from cache.
+This is acheived by using img tag helper
+<img src="~/images/flower.jpeg" asp-append-version="true"/>
+
+how this works - it creates a hash code which changes when image changes or remains the same.
+
+
+Environment tag helper:
+***************************
+It sets the environment

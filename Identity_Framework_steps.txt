@@ -1,0 +1,16 @@
+In dbcontext cahnge to Identitydbcontext
+in configureservices add
+	services.AddIdentity<IdentityUusr,IdentityRole>
+.addEntityFrameworkStores<AppDbConrext>;
+
+In configure()
+add
+app.UseAuthentication(); before app.UseMVC()
+
+
+In AppDBContext class inside OnModelCreating()
+add
+base.OnModelCreating(modelBuilder);
+
+add-migration Identity
+update-database

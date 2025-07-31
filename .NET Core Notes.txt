@@ -1,0 +1,52 @@
+Dotnetcore :
+
+This has main method in program.cs and starts it's execution from there.
+Main () calls startup.cs class and it has 2 methods configure and confiugre services
+WE don't have global.asax to start the application
+****************
+
+Dependency injection can be used when needed in traditional asp.net, but here it's added and all services are injected through dependency injection in configure service method
+*******************
+
+ASP.NET Core pipeline:
+
+browser has a pipeline which sends request and receives response. it has individual parts called middleware and example of middle ware are authentication, MVC, static files etc.
+
+Order is very important in giving middleware, first it should be authenticated then it has to go to MVC otherwise first MVC and then auth means it won't work.
+
+Finally after auth then MVC then fetch image files etc
+
+When data travels through pipeline it has to get manipulated by these middleware and then it needs to get response
+
+*************************
+When request starts it first goes to IIS server--> then goto dotnet runtime --> and then it looks for entry point-->finds main method and executes it--> then it looks for internal server called kestrel --> main () and startup class now starts the application.
+
+so iis calls -->runtime (dotnet core)-->this calls main () and startup class --> this calls internal server kestrel-->which in turn calls application --> then passes through pipeline -->receives response--> pas to internal server --> then pass to exetrnal server like IIS or linux or apache
+
+in clssic asp it goes to iis then to windows and gets executed (so it can't run on other systems other than windows)
+
+but now since we have middlewares and 2 servers we can run in all sytems
+
+so in configure() we have middleware then under that we have so many middlwares that gets executed(note: middlewares are methods that are present in startup page)
+*********************************
+
+Middleware in asp.net core:
+
+1. Browser sends request to server --> server to context --> context to pipeline and through every middleware--> if middleware responds -->send back to context and then--> to server--> then to browser
+
+server->contexxt->pipeline>middleware->context->server->browser (order for middleware is most important)
+
+***********************************
+appsettings.json
+
+1. All our applications settings are contained in this file
+2. Any changes in appsettings will require restaring IIS service to take effect
+
+we can add details like 
+a. connectionstring
+b. security
+c. any dependencies
+
+***********************
+
+Dependency Injection

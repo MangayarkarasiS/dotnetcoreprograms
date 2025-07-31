@@ -1,0 +1,157 @@
+https://www.youtube.com/watch?v=7jDRA9K8ZhM
+Angular crud | Angular crud in tamil | Angular Web api | Cheetah Media
+
+
+Angular 12 CRUD Application example with Web API
+https://www.bezkoder.com/angular-12-crud-app/
+****************************************************************************************************************************************
+
+Logging is an essential feature in applications for detecting or investigating issues. 
+****************************************************************************************************************************************
+
+kestrel					iis
+
+Open source				closed source(developed and maintained only by 	microsoft) 
+
+cross-platform server			windows specific server
+(runs on Linux, Mac, Windows)
+
+IIS is old					Kestrel is designed for cross-platform and high  performance
+
+Kestrel doesn’t provide all 
+the rich functionality of a 
+full-fledged web server such 
+as IIS, Nginx, or Apache. 
+
+We use it as a reverse proxy
+
+****************************************************************************************************************************************
+ASP.NET Core Tutorial in Tamil (Part-6 ASP.NET Core InProcess and OutOfProcess Hosting) -  https://www.youtube.com/watch?v=jq138BlVe2s
+
+
+Hosting Models:
+-------------------------
+In Process				Out of Process
+
+1. Use only one server(IIS)			Use 1 or 2 servers(IIs(External server) vs Kestrel(internal server))
+
+2. Performance will be good as only 
+one server is used 
+
+3. configure in .csproj			if not configured by default it uses kestrel
+
+4. USeful in production environment		useful in development environment as security load balancing cannot be done with kestrel
+
+5. Process name is w3wp.exe or iisexpress.exe	uses dotnet.exe
+
+6. configured in 							configured in 
+<AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>		<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+in program.cs createDefaultBuilder() method calls UseIIS() method                        in program.cs createDefaultBuilder() method calls UseKestrel() method
+
+
+Note: for small applications that is for development environment kestrel is best , for production envi IIS is best
+
+*********************************************************************************************************************************************************
+
+https://www.youtube.com/watch?v=2H3Dp4qMcBw&list=PLF8lyT5tAjeHQEGxpPSLhKCa9RRTi7Mpd&index=7
+ASP.NET Core Tutorial in Tamil (Part-7 ASP.NET Core launchSettings.json File)
+Launchsettings.json:  (decides server according to profile selected)
+-----------------------------
+
+1. It's present in properties
+2. it has two profiles with commandName: IISExpress and commanName: Project
+3. if you Debug ur app with selecting IISExpress then it will run in port specified by it 
+i.e application URL: mentioned in it or
+ if we select Project it will run in that port specified by it in launchsettings .json
+i.e application URL: mentioned in it 
+
+4. it will use IIS or IISExpress as server if profile is IISExpress 
+or
+it will use kestrel if profile is project.
+
+5. If commandname is project configuration file is ignored and by default kestrel server is selected
+if commandname is IISExpress or IIS hosting model is InProcess or OutofProcess then IIS sever or kestrel server will be selected according to that.
+
+do refer word document for screenshots:Launch settings in >net core folder in documents/Mangai
+***************************
+
+Appsettings.json: (One of configuration sources in core)
+----------------------------
+Configuration sources in Asp.NEt Core
+
+1. Files(appsettings.json, appsettings.{Environment}.json)
+2. User secrets
+3. Environment Variables
+4. Command-line arguments
+
+ToAccess the configuration
+IConfiguration.service
+
+1. In the above order files will get executed. , if config is done in appsettings it will get executed, if we have done in envirinment settings then it will ignore the settings in appsettings and execute it, in the same way if done in Environment variables it ignores above 3 and so on.  
+
+2. After giving configuration in these files , it has to be included in startup.cs through dependency injection i.e 
+
+create a ctor in starup.cs and call Iconfiguration i.e 
+
+private IConfiguration _config;
+
+public startup(IConfiguration config)
+{
+_config=config;
+}
+
+then in confgure ()
+{
+var connstr=_config("Myconnstr");
+await context.Response.WriteAsync(connstr);
+}
+
+******************
+
+Middleware:
+
+When a request comes in what happens and how it is processed , is taken care by middleware i.e how response is given is taken care by middleware
+
+For e.g if i want to enter cognizant premises, 1st i have to show the mail to building security of ASV i.e logging middleware,
+then i need to go to respective floor and get id card from security i.e next static middleware, then i can enter the classroom
+
+There may a case where after completing building security i.e after showing the pass got on 1st day(now i have 30 days id card) directly
+i will go to coach room and sign my register (here i am bypassing the 2nd middleware i.e id card receival from security and directly moving to 3rd middleware MVC)
+
+sometimes i have to shortcircuit i.e after directly receiving id card goto classroom without signing the attendance
+
+So  middleware are classes which will get executed in a pipeline , one after the other.
+
+1. Sometimes we may simply process the request to next middleware
+2. sometime it may process and move to next middleware
+3. sometimes it may handle and short circuit
+
+So middleware can be used to access both request and response
+order is very important in middleware
+*************
+
+ASP.NET Request processing pipeline configuration
+
+1. here it shows the order in which the middleware gets executed.
+
+app.usestaticfiles();
+2. app.use(async(context,next)=>
+{
+logger.Lognformation("1st middleware incoming");
+await context.Response.WriteAsync("1st mw");
+await.next();
+logger.Lognformation("1st middleware outgoing");
+}
+app.Run(async(context)=>
+{
+logger.Lognformation("2nd middleware incoming");
+await context.Response.WriteAsync("2nd mw");
+
+logger.Lognformation("2nd middleware outgoing");
+}
+
+here if i give staticfiles at bottom it won't get executed as orer is important,
+it contains logger which shows how it executes,
+next will pass request to next middleware
+
+*******************

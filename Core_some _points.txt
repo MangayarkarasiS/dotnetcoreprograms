@@ -1,0 +1,41 @@
+wwwroot - 
+1. store static files and it can be accessed only from these folders. so don't go for creating it outside of the folder
+2. this folder can be renamed and the new name should be included in main method as .UseWebRoot("Content") if wwroot is changed to content
+
+****************
+program.cs
+
+1. asp.net core is a console project
+2. it starts executing from Main class
+3. we can create host for the application from here(which has pre configured defaults)
+4. CreateDefaultBuilder() configures Kestrel, IISIntegration and other configurations
+
+Kestrel:
+
+5. Kestrel is an open-source, cross-platform web server for ASP.NET Core. 6. It is designed to be used behind proxy because it has not yet matured to be exposed as a full-fledge web server.
+7. Kestrel calls ConfigureAppConfiguration() - to load configurations from appsettings.json files, environment variables and user secrets. 
+
+*******************
+startup.cs
+
+1. used instead of global.asax file
+2. Its executed when application starts
+3. configured using  .UseStartup() in host
+4. we can change the name inside usestartup()
+5. Startup class includes two public methods: ConfigureServices(optional) and Configure.
+
+configure services:
+------------------------------
+6. The ConfigureServices method is a place where you can register your dependent classes
+7. After registering dependent class, it can be used anywhere in the application. 
+8. You just need to include it in the parameter of the constructor of a class
+9. IOc container will automatically inject it
+10. ASP.NET Core refers dependent class as a Service.(means it is going to be used in some other class)
+
+Configure():
+----------------
+1. configure application request pipeline for your application using IApplicationBuilder
+2. middleware components to define a request pipeline, which will get executed on every request
+
+1. configure services method is called before configure,
+2.  so that you can register your custom service with the IoC container which you may use in the Configure method.

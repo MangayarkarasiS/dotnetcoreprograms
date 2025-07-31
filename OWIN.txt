@@ -1,0 +1,6 @@
+What is Owin middleware explanation:
+http://www.codedigest.com/posts/1/what-is-owin-a-beginners-guide
+
+
+Demo with owin:
+https://bitoftech.net/2014/06/01/token-based-authentication-asp-net-web-api-2-owin-asp-net-identity/
